@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-                label 'node1'
-            }
+    agent any
    
    environment {
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
@@ -148,7 +146,7 @@ stage('build ') {
 
             steps {
                sh '''
-           docker build -t devopseasylearning2021/yvan:$ImageTAG .
+           docker build -t devopseasylearning2021/eric:$ImageTAG .
                '''
             }
         }
@@ -171,7 +169,18 @@ stage('build ') {
      stage('Docker push ') {
             steps {
                sh '''
-              docker push devopseasylearning2021/yvan:$ImageTAG 
+              docker push devopseasylearning2021/eric:$ImageTAG 
+                '''
+            }
+        }
+
+    
+
+
+    stage('Deploy with docker ') {
+            steps {
+               sh '''
+              docker run -i devopseasylearning2021/s:$ImageTAG 
                 '''
             }
         }
