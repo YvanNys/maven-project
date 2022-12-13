@@ -40,16 +40,13 @@ pipeline {
         }
 
 
-
-
         stage('Sonarqube analysis') {
             steps {
                 echo 'Hello World'
                 sh 'sleep 1'
             }
         }
-
-          
+       
 
         stage('Sonarqube quality gate') {
             steps {
